@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Next Orbit Speedfest - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .hero-cta button,
+    #copyLinkBtn {
+      padding: 12px 26px !important;
+      font-size: 0.95rem !important;
+      min-width: 180px !important;
+    }
+  </style>
+</head>
+
+<body class="page-transition">
+<div class="page-overlay"></div>
+
+<header class="site-header">
+
+  <div></div>
+
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+  <div></div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About Us</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/championship/">Championship</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<main class="page-content">
+
+  <section class="hero">
+    <div class="hero-logo" style="margin-bottom: 20px;">
+      <img src="images/logo.png"
+           alt="Business Logo"
+           style="width: 200px; height: auto; border-radius: 12px;">
+    </div>
+
+    <h1 class="hero-title">Next Orbit Speedfest</h1>
+
+    <p class="hero-subtitle">
+      Professional, Legal Racing Events For Drivers Who Take Speed Seriously.
+    </p>
+
+    <p class="hero-subtitle" style="opacity: 0.7; font-style: italic;">
+      Do it right. Do it legal.
+    </p>
+
+    <div class="hero-cta">
+      <a href="events/">
+        <button class="btn-primary">Our Events</button>
+      </a>
+      <a href="about/">
+        <button class="btn-ghost">Meet the Team</button>
+      </a>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button class="btn-gradient" id="copyLinkBtn"
+              data-copy-link="https://tinyurl.com/NOSRacing">
+        Join Our Email
+      </button>
+    </div>
+
+    <div id="copyPopup"
+         style="
+           position: fixed;
+           bottom: 30px;
+           left: 50%;
+           transform: translateX(-50%);
+           background: rgba(0,0,0,0.8);
+           padding: 12px 20px;
+           border-radius: 999px;
+           color: white;
+           font-size: 0.9rem;
+           opacity: 0;
+           pointer-events: none;
+           transition: opacity 0.3s ease;
+           z-index: 9999;">
+      Link copied to clipboard
+    </div>
+
+  </section>
+
+  <!-- Carousel #1 -->
+  <section class="event-fade-carousel home-carousel-spacing" data-event-fade-carousel>
+    <div class="event-fade-slide active">
+      <img src="images/home/slide1.jpg" alt="Home Slide 1">
+    </div>
+    <div class="event-fade-slide">
+      <img src="images/home/slide2.jpg" alt="Home Slide 2">
+    </div>
+    <div class="event-fade-slide">
+      <img src="images/home/slide3.jpg" alt="Home Slide 3">
+    </div>
+  </section>
+
+  <!-- Carousel #2 -->
+  <section class="event-fade-carousel home-carousel-spacing" data-event-fade-carousel>
+    <div class="event-fade-slide active">
+      <img src="images/home/slide4.jpg" alt="Home Slide 4">
+    </div>
+    <div class="event-fade-slide">
+      <img src="images/home/slide5.jpg" alt="Home Slide 5">
+    </div>
+    <div class="event-fade-slide">
+      <img src="images/home/slide6.jpg" alt="Home Slide 6">
+    </div>
+  </section>
+
+</main>
+
+<script src="js/main.js"></script>
+
+<script>
+// Page Transition Logic
+(function () {
+  const body = document.body;
+
+  window.addEventListener('load', () => {
+    body.classList.add('page-visible');
+  });
+
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href ||
+        href.startsWith('#') ||
+        href.startsWith('http') ||
+        link.hasAttribute('data-no-transition')) return;
+
+    e.preventDefault();
+    body.classList.remove('page-visible');
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 350);
+  });
+})();
+</script>
+
+</body>
+</html>

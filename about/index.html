@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us - Next Orbit Speedfest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Corrected path -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="page-transition">
+
+<header class="site-header">
+
+  <!-- LEFT: HOME BUTTON -->
+  <div style="justify-self: start;">
+    <a href="../">
+      <button class="btn-ghost">← Home</button>
+    </a>
+  </div>
+
+  <!-- CENTER: NAV TOGGLE -->
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+  <div></div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About Us</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/championship/">Championship</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<main class="page-content">
+
+  <h1 class="page-heading">About Us</h1>
+
+  <p class="page-intro">
+    We’re here to unleash the thrill of racing for everyone in this state, offering an experience that is safe, legal, and completely worry free. Our mission is to bring people together through the excitement of true competition while giving them a place where they can push their limits with total confidence. This is the racing experience you have been waiting for, and we are proud to make it a reality for our entire community.
+  </p>
+
+  <h2 class="page-subheading">Meet the Team!</h2>
+
+  <p class="page-intro">
+    Our team is a community of people bound by a shared passion for NOS. Some chase the thrill of the track, others stand behind them with unwavering support, and every one of them is essential. Together, they bring heart, strength, and purpose to this business, and it is their collective passion that fuels our success.
+  </p>
+
+  <section class="team-grid">
+
+    <article class="team-card">
+      <img src="../images/team/leo.jpg" class="team-image" alt="Leo Archer">
+      <div class="team-overlay">
+        <div class="team-name">Leo Archer</div>
+        <div class="team-title">Founder & CEO</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <div class="team-image-placeholder"></div>
+      <div class="team-overlay">
+        <div class="team-name">Daniel De Rolo</div>
+        <div class="team-title">Co-Founder</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <div class="team-image-placeholder"></div>
+      <div class="team-overlay">
+        <div class="team-name">Marshall Davis</div>
+        <div class="team-title">Owner & Race Marshal</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <img src="../images/team/snow.jpg" class="team-image" alt="Snow Holloway">
+      <div class="team-overlay">
+        <div class="team-name">Snow Holloway</div>
+        <div class="team-title">Email Rat Wizard</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <img src="../images/team/keatyn.jpg" class="team-image" alt="Keatyn Madriaga">
+      <div class="team-overlay">
+        <div class="team-name">Keatyn Madriaga</div>
+        <div class="team-title">Jesus</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <img src="../images/team/rae.jpg" class="team-image" alt="Rae Archer">
+      <div class="team-overlay">
+        <div class="team-name">Rae Archer</div>
+        <div class="team-title">Likes Shrimps and Bananas</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <div class="team-image-placeholder"></div>
+      <div class="team-overlay">
+        <div class="team-name">John Brave</div>
+        <div class="team-title">Downbad Thor</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <div class="team-image-placeholder"></div>
+      <div class="team-overlay">
+        <div class="team-name">Davy Longmire</div>
+        <div class="team-title">American</div>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <div class="team-image-placeholder"></div>
+      <div class="team-overlay">
+        <div class="team-name">Diz Turner</div>
+        <div class="team-title">Forever Sideways</div>
+      </div>
+    </article>
+
+  </section>
+
+</main>
+
+<!-- Corrected JS path -->
+<script src="../js/main.js"></script>
+
+<script>
+  (function () {
+    const body = document.body;
+
+    window.addEventListener('load', () => {
+      body.classList.add('page-visible');
+    });
+
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      if (!href ||
+          href.startsWith('#') ||
+          href.startsWith('http') ||
+          link.hasAttribute('data-no-transition')) return;
+
+      e.preventDefault();
+      body.classList.remove('page-visible');
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 350);
+    });
+  })();
+</script>
+
+</body>
+</html>

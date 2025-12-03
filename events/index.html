@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Events - Next Orbit Speedfest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Correct file path -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="page-transition">
+
+<header class="site-header">
+
+  <!-- LEFT: HOME BUTTON -->
+  <div style="justify-self: start;">
+    <a href="../">
+      <button class="btn-ghost">← Home</button>
+    </a>
+  </div>
+
+  <!-- CENTER: NAV TOGGLE -->
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+  <div></div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About Us</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/championship/">Championship</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<main class="page-content">
+
+  <h1 class="page-heading">Our Events</h1>
+
+  <p class="page-intro">
+    Here you can find information and pictures of all of our previous events. Just click or tap on the event you want to read about
+    and you'll be taken to a new page specifically for that event!
+  </p>
+
+  <section class="events-grid">
+
+    <!-- EVENT 1 -->
+    <article class="event-card" data-event-url="event1/">
+      <div class="event-image-wrapper">
+        <img src="../images/events/event1.jpg" class="event-image" alt="Event One">
+      </div>
+      <h3>Our First Race</h3>
+    </article>
+
+    <!-- EVENT 2 -->
+    <article class="event-card" data-event-url="event2/">
+      <div class="event-image-wrapper">
+        <img src="../images/events/event2.jpg" class="event-image" alt="Event Two">
+      </div>
+      <h3>All in: Oval Rush</h3>
+    </article>
+
+    <!-- EVENT 3 -->
+    <article class="event-card" data-event-url="event3/">
+      <div class="event-image-wrapper">
+        <img src="../images/events/event3.jpg" class="event-image" alt="Event Three">
+      </div>
+      <h3>Kawaii Time Trials</h3>
+    </article>
+
+    <!-- EVENT 4 -->
+    <article class="event-card" data-event-url="event4/">
+      <div class="event-image-wrapper">
+        <img src="../images/events/event4.jpg" class="event-image" alt="Event Four">
+      </div>
+      <h3>Fort Zancudo Race Day</h3>
+    </article>
+
+    <!-- EVENT 5 -->
+    <article class="event-card" data-event-url="event5/">
+      <div class="event-image-wrapper">
+        <img src="../images/events/event5.jpg" class="event-image" alt="Event Five">
+      </div>
+      <h3>Next Orbit Launch Party</h3>
+    </article>
+
+    <!-- EVENT 6 -->
+    <article class="event-card" data-event-url="event6/">
+      <div class="event-image-wrapper">
+        <img src="../images/events/event6.jpg" class="event-image" alt="Event Six">
+      </div>
+      <h3>Midweek Madness</h3>
+    </article>
+
+  </section>
+
+</main>
+
+<!-- Correct JS path -->
+<script src="../js/main.js"></script>
+
+<script>
+(function () {
+  const body = document.body;
+
+  window.addEventListener('load', () => {
+    body.classList.add('page-visible');
+  });
+
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href ||
+        href.startsWith('#') ||
+        href.startsWith('http') ||
+        link.hasAttribute('data-no-transition')) return;
+
+    e.preventDefault();
+    body.classList.remove('page-visible');
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 350);
+  });
+})();
+</script>
+
+</body>
+</html>

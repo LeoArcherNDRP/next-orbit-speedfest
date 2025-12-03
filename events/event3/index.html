@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Details - Next Orbit Speedfest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Correct stylesheet path -->
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+
+<body class="page-transition">
+
+<header class="site-header">
+
+  <!-- LEFT: BACK TO EVENTS -->
+  <div style="justify-self: start;">
+    <a href="../">
+      <button class="btn-ghost">← Back to Events</button>
+    </a>
+  </div>
+
+  <!-- CENTER: NAV TOGGLE -->
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+  <div></div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About Us</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/championship/">Championship</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<main class="page-content">
+
+  <h1 class="page-heading">Event Title</h1>
+
+  <!-- EVENT FADE CAROUSEL -->
+  <div class="event-fade-carousel" data-event-fade-carousel>
+
+    <div class="event-fade-slide active">
+      <img src="../../images/events/event3/slide1.jpg" alt="Event Image 1">
+    </div>
+
+    <div class="event-fade-slide">
+      <img src="../../images/events/event3/slide2.jpg" alt="Event Image 2">
+    </div>
+
+    <div class="event-fade-slide">
+      <img src="../../images/events/event3/slide3.jpg" alt="Event Image 3">
+    </div>
+
+  </div>
+
+  <!-- EVENT INFO PANEL -->
+  <div class="event-info-panel">
+
+    <h2 class="page-heading" style="margin-top: 0; margin-bottom: 12px;">
+      Event Subheading
+    </h2>
+
+    <p class="page-intro" style="margin-bottom: 0;">
+      This is the long-form description of the event.
+      You can duplicate this template for any future event pages.
+      The panel will automatically expand based on text length.
+    </p>
+
+  </div>
+
+</main>
+
+<!-- Correct JS path -->
+<script src="../../js/main.js"></script>
+
+<script>
+(function () {
+  const body = document.body;
+
+  window.addEventListener('load', () => {
+    body.classList.add('page-visible');
+  });
+
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href ||
+        href.startsWith('#') ||
+        href.startsWith('http') ||
+        link.hasAttribute('data-no-transition')) return;
+
+    e.preventDefault();
+    body.classList.remove('page-visible');
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 350);
+  });
+})();
+</script>
+
+</body>
+</html>

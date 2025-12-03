@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Race 1 Results - Next Orbit Speedfest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <style>
+    table.race-results {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table.race-results th {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      padding: 12px 8px;
+      background: rgba(0,0,0,0.45);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+    }
+
+    table.race-results td {
+      padding: 12px 8px;
+      font-size: 0.92rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    table.race-results tr:hover {
+      background: rgba(255,0,170,0.1);
+    }
+
+    .driver-details {
+      display: none;
+      padding: 10px 12px 16px;
+      background: rgba(0,0,0,0.35);
+      border-radius: 12px;
+      margin-top: -10px;
+      margin-bottom: 14px;
+      animation: fadeIn 0.3s ease;
+      font-size: 0.86rem;
+    }
+
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  </style>
+</head>
+
+<body class="page-transition">
+
+<header class="site-header">
+  <div style="justify-self: start;">
+    <a href="/championship/">
+      <button class="btn-ghost">← Back to Championship</button>
+    </a>
+  </div>
+
+  <button class="nav-toggle">☰</button>
+
+  <div></div>
+
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About Us</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/championship/">Championship</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="page-content">
+
+  <h1 class="page-heading">Race 1 Results</h1>
+
+  <p class="page-intro">
+    Official race-by-race breakdown for Race 1. Tap a driver to expand their performance notes.
+  </p>
+
+<!-- RACE RESULTS PANEL (separate from championship panel) -->
+<div class="race-standings-panel">
+  <h2 class="page-subheading">Race 1 — Standings</h2>
+
+<table class="race-results">
+  <tr>
+    <th class="pos-col">Pos</th>
+    <th>Driver</th>
+    <th class="pts-col">Points</th>
+    <th>Team</th>
+  </tr>
+
+  <!-- 1 -->
+  <tr class="driver-row" data-driver="1">
+    <td>1</td>
+    <td>Alex Hunter</td>
+    <td>25</td>
+    <td>Next Orbit Speedfest</td>
+  </tr>
+  <tr id="driver-1" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 1<br>
+      <strong>Best Lap:</strong> 1:52
+    </td>
+  </tr>
+
+  <!-- 2 -->
+  <tr class="driver-row" data-driver="2">
+    <td>2</td>
+    <td>Riley Storm</td>
+    <td>18</td>
+    <td>Kings Motorsports</td>
+  </tr>
+  <tr id="driver-2" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 3<br>
+      <strong>Best Lap:</strong> 1:56
+    </td>
+  </tr>
+
+  <!-- 3 -->
+  <tr class="driver-row" data-driver="3">
+    <td>3</td>
+    <td>Morgan Vale</td>
+    <td>15</td>
+    <td>Corner Donuts</td>
+  </tr>
+  <tr id="driver-3" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 2<br>
+      <strong>Best Lap:</strong> 1:59
+    </td>
+  </tr>
+
+  <!-- 4 -->
+  <tr class="driver-row" data-driver="4">
+    <td>4</td>
+    <td>Jamie Cross</td>
+    <td>12</td>
+    <td>Full Send Racing</td>
+  </tr>
+  <tr id="driver-4" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 4<br>
+      <strong>Best Lap:</strong> 2:01
+    </td>
+  </tr>
+
+  <!-- 5 -->
+  <tr class="driver-row" data-driver="5">
+    <td>5</td>
+    <td>Drew Halden</td>
+    <td>10</td>
+    <td>Redline United</td>
+  </tr>
+  <tr id="driver-5" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 6<br>
+      <strong>Best Lap:</strong> 2:03
+    </td>
+  </tr>
+
+  <!-- 6 -->
+  <tr class="driver-row" data-driver="6">
+    <td>6</td>
+    <td>Kai Mercer</td>
+    <td>8</td>
+    <td>Nightshade Motorsport</td>
+  </tr>
+  <tr id="driver-6" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 5<br>
+      <strong>Best Lap:</strong> 2:03
+    </td>
+  </tr>
+
+  <!-- 7 -->
+  <tr class="driver-row" data-driver="7">
+    <td>7</td>
+    <td>Sky Archer</td>
+    <td>6</td>
+    <td>Turbo Syndicate</td>
+  </tr>
+  <tr id="driver-7" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 7<br>
+      <strong>Best Lap:</strong> 2:05
+    </td>
+  </tr>
+
+  <!-- 8 -->
+  <tr class="driver-row" data-driver="8">
+    <td>8</td>
+    <td>Reese Talon</td>
+    <td>4</td>
+    <td>Max Velocity</td>
+  </tr>
+  <tr id="driver-8" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 9<br>
+      <strong>Best Lap:</strong> 2:06
+    </td>
+  </tr>
+
+  <!-- 9 -->
+  <tr class="driver-row" data-driver="9">
+    <td>9</td>
+    <td>Charlie West</td>
+    <td>2</td>
+    <td>Night Owls Racing</td>
+  </tr>
+  <tr id="driver-9" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 10<br>
+      <strong>Best Lap:</strong> 2:07
+    </td>
+  </tr>
+
+  <!-- 10 -->
+  <tr class="driver-row" data-driver="10">
+    <td>10</td>
+    <td>Harper Lane</td>
+    <td>1</td>
+    <td>Apex Nova</td>
+  </tr>
+  <tr id="driver-10" class="driver-details">
+    <td colspan="4">
+      <strong>Starting Position:</strong> 8<br>
+      <strong>Best Lap:</strong> 2:08
+    </td>
+  </tr>
+
+</table>
+</div>
+
+</main>
+
+<script src="../../js/main.js"></script>
+
+<script>
+  /* Click to expand driver stats */
+  document.querySelectorAll('.driver-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const id = row.dataset.driver;
+      const panel = document.getElementById('driver-' + id);
+      panel.style.display = panel.style.display === 'table-row' ? 'none' : 'table-row';
+    });
+  });
+
+  /* Page transition animation */
+  window.addEventListener('load', () => {
+    document.body.classList.add('page-visible');
+  });
+</script>
+
+</body>
+</html>

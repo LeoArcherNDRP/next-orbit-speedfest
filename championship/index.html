@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Championship Standings - Next Orbit Speedfest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    /* MATCH RACE RESULTS PANEL LOOK */
+    .standings-panel {
+      max-width: 960px;
+      margin: 0 auto 50px;
+      padding: 40px 28px;
+      border-radius: 22px;
+      background: radial-gradient(circle, rgba(10,20,40,0.95), rgba(2,4,12,0.98));
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow:
+        0 16px 40px rgba(0,0,0,0.95),
+        0 0 22px rgba(0,200,255,0.75);
+    }
+
+    .standings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      table-layout: fixed;
+    }
+
+    .standings-table th {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      padding: 12px 8px;
+      background: rgba(0,0,0,0.45);
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .standings-table td {
+      padding: 12px 8px;
+      font-size: 0.92rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      word-wrap: break-word;
+    }
+
+    .standings-table tr:hover {
+      background: rgba(255,0,170,0.1);
+      cursor: pointer;
+    }
+
+    /* Race list panel */
+    .race-list-panel {
+      max-width: 720px;
+      margin: 40px auto 60px;
+      padding: 40px 28px;
+      border-radius: 22px;
+      background: radial-gradient(circle, rgba(10,20,40,0.95), rgba(2,4,12,0.98));
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow:
+        0 16px 40px rgba(0,0,0,0.95),
+        0 0 22px rgba(0,200,255,0.75);
+    }
+
+    .race-list a {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      margin-bottom: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .race-list a:hover {
+      background: linear-gradient(135deg, rgba(233,24,120,0.45), rgba(61,159,201,0.55));
+      box-shadow: 0 0 14px rgba(0,200,255,0.75);
+    }
+
+    /* Hidden driver dropdown rows */
+    .driver-details {
+      display: none;
+      background: rgba(0,0,0,0.35);
+      border-radius: 12px;
+      text-align: center;
+      padding: 14px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .driver-details td {
+      border: none !important;
+      padding: 16px 0 !important;
+    }
+
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  </style>
+</head>
+
+<body class="page-transition">
+
+<header class="site-header">
+  <div style="justify-self: start;">
+    <a href="../">
+      <button class="btn-ghost">← Home</button>
+    </a>
+  </div>
+
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+  <div></div>
+
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About Us</a></li>
+      <li><a href="/events/">Events</a></li>
+      <li><a href="/championship/">Championship</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="page-content">
+
+  <h1 class="page-heading">Championship Standings</h1>
+
+  <p class="page-intro">
+    Current rankings for the Next Orbit Speedfest Championship. Standings update after every event.
+  </p>
+
+  <!-- OVERALL CHAMPIONSHIP STANDINGS -->
+  <div class="standings-panel">
+    <h2 class="page-subheading">Overall Championship Standings</h2>
+
+    <table class="standings-table">
+      <thead>
+        <tr>
+          <th>Pos</th>
+          <th>Driver</th>
+          <th>Points</th>
+          <th>Team</th>
+        </tr>
+      </thead>
+      <tbody id="standings-body">
+        <!-- AUTO-FILLED BY JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RACE RESULTS LINKS -->
+  <div class="race-list-panel">
+    <h2 class="page-subheading">Race Results</h2>
+
+    <div class="race-list">
+      <a href="race1/">Race 1</a>
+      <a href="race2/">Race 2</a>
+      <a href="race3/">Race 3</a>
+      <a href="race4/">Race 4</a>
+      <a href="race5/">Race 5</a>
+      <a href="race6/">Race 6</a>
+    </div>
+  </div>
+
+</main>
+
+<script src="../js/main.js"></script>
+
+<script>
+/* Page transition */
+(function () {
+  const body = document.body;
+
+  window.addEventListener('load', () => {
+    body.classList.add('page-visible');
+  });
+
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href ||
+        href.startsWith('#') ||
+        href.startsWith('http') ||
+        link.hasAttribute('data-no-transition')) return;
+
+    e.preventDefault();
+    body.classList.remove('page-visible');
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 350);
+  });
+})();
+</script>
+
+<script>
+/* ==========================================================
+   AUTO-UPDATING CHAMPIONSHIP SYSTEM
+   Reads race1–race6 standings tables and builds totals
+========================================================== */
+(async function buildChampionshipStandings() {
+  const standingsBody = document.getElementById("standings-body");
+  if (!standingsBody) return;
+
+  const racePages = [
+    "race1/",
+    "race2/",
+    "race3/",
+    "race4/",
+    "race5/",
+    "race6/"
+  ];
+
+  const totals = new Map(); 
+  // name -> { name, team, points, bestFinish, podiums }
+
+  async function fetchRace(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load " + url);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.querySelector("table.race-results");
+  }
+
+  function addResult(pos, name, pts, team) {
+    if (!totals.has(name)) {
+      totals.set(name, {
+        name,
+        team,
+        points: 0,
+        bestFinish: Infinity,
+        podiums: 0
+      });
+    }
+    const d = totals.get(name);
+    d.points += pts;
+    d.bestFinish = Math.min(d.bestFinish, pos);
+    if (pos <= 3) d.podiums += 1;
+    if (!d.team) d.team = team;
+  }
+
+  // load each race
+  for (const raceUrl of racePages) {
+    try {
+      const table = await fetchRace(raceUrl);
+      if (!table) continue;
+
+      const rows = Array.from(table.querySelectorAll("tr.driver-row"));
+      rows.forEach(r => {
+        const cells = r.querySelectorAll("td");
+        if (cells.length < 4) return;
+
+        const pos = parseInt(cells[0].textContent.trim(), 10);
+        const name = cells[1].textContent.trim();
+        const pts = parseInt(cells[2].textContent.trim(), 10);
+        const team = cells[3].textContent.trim();
+
+        if (!name || Number.isNaN(pos) || Number.isNaN(pts)) return;
+        addResult(pos, name, pts, team);
+      });
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+
+  // sort standings
+  const drivers = Array.from(totals.values()).sort((a, b) => {
+    if (b.points !== a.points) return b.points - a.points;
+    if (a.bestFinish !== b.bestFinish) return a.bestFinish - b.bestFinish;
+    return a.name.localeCompare(b.name);
+  });
+
+  // render rows with dropdown stats
+  standingsBody.innerHTML = "";
+
+  drivers.forEach((d, i) => {
+    const pos = i + 1;
+    const id = "champ-driver-" + pos;
+
+    const row = document.createElement("tr");
+    row.className = "driver-row";
+    row.dataset.driver = id;
+    row.innerHTML = `
+      <td>${pos}</td>
+      <td>${d.name}</td>
+      <td>${d.points}</td>
+      <td>${d.team}</td>
+    `;
+
+    const details = document.createElement("tr");
+    details.id = id;
+    details.className = "driver-details";
+    details.innerHTML = `
+      <td colspan="4">
+        <strong>Best Finish:</strong> ${d.bestFinish === Infinity ? "-" : ordinal(d.bestFinish)}<br>
+        <strong>Podiums:</strong> ${d.podiums}
+      </td>
+    `;
+
+    standingsBody.appendChild(row);
+    standingsBody.appendChild(details);
+  });
+
+  // click-to-expand
+  standingsBody.querySelectorAll(".driver-row").forEach(row => {
+    row.addEventListener("click", () => {
+      const id = row.dataset.driver;
+      const panel = document.getElementById(id);
+      panel.style.display = panel.style.display === "table-row" ? "none" : "table-row";
+    });
+  });
+
+  function ordinal(n) {
+    const s = ["th","st","nd","rd"], v = n % 100;
+    return n + (s[(v-20)%10] || s[v] || s[0]);
+  }
+})();
+</script>
+
+</body>
+</html>
