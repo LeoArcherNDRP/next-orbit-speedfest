@@ -50,7 +50,7 @@
       cursor: pointer;
     }
 
-    /* Race list panel */
+    /* Race link panel */
     .race-list-panel {
       max-width: 720px;
       margin: 40px auto 60px;
@@ -65,14 +65,11 @@
 
     .race-list a {
       display: block;
-      width: 100%;
       padding: 12px 0;
       margin-bottom: 14px;
       border-radius: 14px;
       background: rgba(255,255,255,0.05);
       transition: 0.25s ease;
-      font-size: 0.95rem;
-      text-align: center;
     }
 
     .race-list a:hover {
@@ -80,7 +77,7 @@
       box-shadow: 0 0 14px rgba(0,200,255,0.75);
     }
 
-    /* Hidden driver dropdown rows */
+    /* Driver dropdown panel */
     .driver-details {
       display: none;
       background: rgba(0,0,0,0.35);
@@ -114,10 +111,10 @@
 
   <nav class="nav-menu">
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about/">About Us</a></li>
-      <li><a href="/events/">Events</a></li>
-      <li><a href="/championship/">Championship</a></li>
+      <li><a href="../">Home</a></li>
+      <li><a href="../about/">About Us</a></li>
+      <li><a href="../events/">Events</a></li>
+      <li><a href="../championship/">Championship</a></li>
     </ul>
   </nav>
 </header>
@@ -130,7 +127,7 @@
     Current rankings for the Next Orbit Speedfest Championship. Standings update after every event.
   </p>
 
-  <!-- OVERALL CHAMPIONSHIP STANDINGS -->
+  <!-- STANDINGS PANEL -->
   <div class="standings-panel">
     <h2 class="page-subheading">Overall Championship Standings</h2>
 
@@ -144,7 +141,7 @@
         </tr>
       </thead>
       <tbody id="standings-body">
-        <!-- AUTO-FILLED BY JS -->
+        <!-- JS AUTO-FILLS THIS -->
       </tbody>
     </table>
   </div>
@@ -168,39 +165,33 @@
 <script src="../js/main.js"></script>
 
 <script>
-/* Page transition */
 (function () {
   const body = document.body;
+  window.addEventListener('load', () => body.classList.add('page-visible'));
 
-  window.addEventListener('load', () => {
-    body.classList.add('page-visible');
-  });
-
-  document.addEventListener('click', function (e) {
+  document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (!link) return;
 
     const href = link.getAttribute('href');
     if (!href ||
-        href.startsWith('#') ||
-        href.startsWith('http') ||
-        link.hasAttribute('data-no-transition')) return;
+        href.startsWith("#") ||
+        href.startsWith("http") ||
+        link.hasAttribute("data-no-transition"))
+      return;
 
     e.preventDefault();
-    body.classList.remove('page-visible');
+    body.classList.remove("page-visible");
 
-    setTimeout(() => {
-      window.location.href = href;
-    }, 350);
+    setTimeout(() => window.location.href = href, 350);
   });
 })();
 </script>
 
+<!-- ==========================================================
+     AUTO-BUILD CHAMPIONSHIP STANDINGS
+     ========================================================== -->
 <script>
-/* ==========================================================
-   AUTO-UPDATING CHAMPIONSHIP SYSTEM
-   Reads race1–race6 standings tables and builds totals
-========================================================== */
 (async function buildChampionshipStandings() {
   const standingsBody = document.getElementById("standings-body");
   if (!standingsBody) return;
@@ -242,7 +233,7 @@
     if (!d.team) d.team = team;
   }
 
-  // load each race
+  // Load races
   for (const raceUrl of racePages) {
     try {
       const table = await fetchRace(raceUrl);
@@ -261,19 +252,20 @@
         if (!name || Number.isNaN(pos) || Number.isNaN(pts)) return;
         addResult(pos, name, pts, team);
       });
+
     } catch (err) {
       console.warn(err);
     }
   }
 
-  // sort standings
+  // Sort results
   const drivers = Array.from(totals.values()).sort((a, b) => {
     if (b.points !== a.points) return b.points - a.points;
     if (a.bestFinish !== b.bestFinish) return a.bestFinish - b.bestFinish;
     return a.name.localeCompare(b.name);
   });
 
-  // render rows with dropdown stats
+  // Render rows
   standingsBody.innerHTML = "";
 
   drivers.forEach((d, i) => {
@@ -304,7 +296,6 @@
     standingsBody.appendChild(details);
   });
 
-  // click-to-expand
   standingsBody.querySelectorAll(".driver-row").forEach(row => {
     row.addEventListener("click", () => {
       const id = row.dataset.driver;
@@ -317,6 +308,7 @@
     const s = ["th","st","nd","rd"], v = n % 100;
     return n + (s[(v-20)%10] || s[v] || s[0]);
   }
+
 })();
 </script>
 

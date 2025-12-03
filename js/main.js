@@ -127,3 +127,48 @@ document.querySelectorAll("[data-event-fade-carousel]").forEach(carousel => {
     slides[index].classList.add("active");
   }, 4500);
 });
+
+
+/* ==========================================================
+   GLOBAL PAGE TRANSITIONS (WORKS ON EVERY PAGE)
+========================================================== */
+(function () {
+  const body = document.body;
+
+  // Fade in on load
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      body.classList.add('page-visible');
+    });
+  });
+
+  // Intercept ALL internal links automatically
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    let href = link.getAttribute('href');
+    if (!href) return;
+
+    // Skip anchors, external URLs, mailto, tel, javascript:
+    const external =
+      href.startsWith('http') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('#') ||
+      href.startsWith('javascript:');
+
+    if (external || link.hasAttribute('data-no-transition')) {
+      return; // normal browser navigation
+    }
+
+    // Handle relative folder-style links (../ ../page/ etc.)
+    e.preventDefault();
+
+    body.classList.remove('page-visible'); // fade-out
+
+    setTimeout(() => {
+      window.location.href = href;
+    }, 350); // same duration as your CSS fade
+  });
+})();

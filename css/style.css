@@ -125,32 +125,6 @@ html::before {
   justify-self: center;
 }
 
-/* Center logo on left side still */
-.logo-area {
-  position: absolute;
-  left: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-mark {
-  width: 50px;
-  height: 44px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #E91831, #3D9FC9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  box-shadow: 0 0 20px rgba(233,24,49,0.9);
-}
-
-.logo-text .business-name { font-weight: 700; }
-.logo-text .business-tagline { opacity: 0.8; font-size: 0.8rem; }
-
-/* Centered Toggle Button */
 .nav-toggle {
   background: none;
   border: 1px solid rgba(255,255,255,0.35);
@@ -168,7 +142,7 @@ html::before {
   transform: translateY(-1px);
 }
 
-/* DROPDOWN — FULLY CENTERED BELOW THE BUTTON */
+/* NAV MENU */
 .nav-menu {
   position: absolute;
   top: 70px;
@@ -266,10 +240,10 @@ html::before {
 }
 
 .hero-cta button {
-  padding: 8px 18px !important;   /* smaller */
-  font-size: 0.8rem !important;   /* slightly smaller text */
-  min-width: 140px !important;     /* reduced width */
-  white-space: nowrap;             /* prevents wrapping */
+  padding: 8px 18px !important;
+  font-size: 0.8rem !important;
+  min-width: 140px !important;
+  white-space: nowrap;
 }
 
 .hero-cta a {
@@ -635,14 +609,13 @@ body.page-transition.page-visible {
 
 /* Race Results — make much narrower on desktop */
 .race-list-panel {
-  max-width: 420px;     /* smaller than before */
-  width: 55%;           /* about half width of the page */
+  max-width: 420px;
+  width: 55%;
   margin: 40px auto 80px;
   padding: 32px 24px;
   text-align: center;
 }
 
-/* Race list spacing/links */
 .race-list a {
   padding: 12px 0;
   margin-bottom: 14px;
@@ -654,15 +627,13 @@ body.page-transition.page-visible {
    ------------------------------- */
 @media (max-width: 600px) {
 
-  /* Standings panel stays very wide on mobile */
   .standings-panel {
     max-width: 94%;
     padding: 28px 20px;
   }
 
-  /* Race Results should be ~66% of screen */
   .race-list-panel {
-    max-width: 66vw;     /* 2/3 of screen width */
+    max-width: 66vw;
     width: 66%;
     padding: 26px 18px;
   }
@@ -670,7 +641,6 @@ body.page-transition.page-visible {
 
 @media (max-width: 600px) {
 
-  /* Force team column to be narrower */
   .standings-table td:nth-child(4),
   .standings-table th:nth-child(4) {
     width: 28%;
@@ -679,13 +649,11 @@ body.page-transition.page-visible {
     text-align: center;
   }
 
-  /* Shrink driver column a bit too */
   .standings-table td:nth-child(2),
   .standings-table th:nth-child(2) {
     width: 28%;
   }
 
-  /* Allow POS / POINTS to stay neat */
   .standings-table td:nth-child(1),
   .standings-table th:nth-child(1),
   .standings-table td:nth-child(3),
@@ -695,7 +663,7 @@ body.page-transition.page-visible {
 }
 
 /* ================================================================
-   INDIVIDUAL RACE PAGE PANEL (Restored — separate from championship)
+   INDIVIDUAL RACE PAGE PANEL
    ================================================================ */
 
 .race-standings-panel {
@@ -711,7 +679,6 @@ body.page-transition.page-visible {
     0 0 22px rgba(0,200,255,0.75);
 }
 
-/* Makes the table behave consistently */
 .race-standings-panel table {
   width: 100%;
   border-collapse: collapse;

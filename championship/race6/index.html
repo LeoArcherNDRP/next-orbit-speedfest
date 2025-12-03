@@ -43,7 +43,10 @@
       font-size: 0.86rem;
     }
 
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
   </style>
 </head>
 
@@ -51,7 +54,7 @@
 
 <header class="site-header">
   <div style="justify-self: start;">
-    <a href="/championship/">
+    <a href="../">
       <button class="btn-ghost">← Back to Championship</button>
     </a>
   </div>
@@ -62,10 +65,10 @@
 
   <nav class="nav-menu">
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about/">About Us</a></li>
-      <li><a href="/events/">Events</a></li>
-      <li><a href="/championship/">Championship</a></li>
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../about/">About Us</a></li>
+      <li><a href="../../events/">Events</a></li>
+      <li><a href="../../championship/">Championship</a></li>
     </ul>
   </nav>
 </header>
@@ -75,18 +78,18 @@
   <h1 class="page-heading">Race 6 Results</h1>
 
   <p class="page-intro">
-    Official race-by-race breakdown for Race 6. Tap a driver to expand their performance notes.
+    Final race standings for Race 6.  
+    Tap a row to expand driver performance stats.
   </p>
 
-<!-- RACE RESULTS PANEL (separate from championship panel) -->
 <div class="race-standings-panel">
   <h2 class="page-subheading">Race 6 — Standings</h2>
 
 <table class="race-results">
   <tr>
-    <th class="pos-col">Pos</th>
+    <th>Pos</th>
     <th>Driver</th>
-    <th class="pts-col">Points</th>
+    <th>Points</th>
     <th>Team</th>
   </tr>
 
@@ -231,23 +234,22 @@
   </tr>
 
 </table>
-  </div>
+</div>
 
 </main>
 
 <script src="../../js/main.js"></script>
 
 <script>
-  /* Expandable driver stats */
   document.querySelectorAll('.driver-row').forEach(row => {
     row.addEventListener('click', () => {
       const id = row.dataset.driver;
       const panel = document.getElementById('driver-' + id);
-      panel.style.display = panel.style.display === 'table-row' ? 'none' : 'table-row';
+      panel.style.display =
+        panel.style.display === 'table-row' ? 'none' : 'table-row';
     });
   });
 
-  /* Page transition */
   window.addEventListener('load', () => {
     document.body.classList.add('page-visible');
   });

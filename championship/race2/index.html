@@ -43,7 +43,10 @@
       font-size: 0.86rem;
     }
 
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
   </style>
 </head>
 
@@ -51,7 +54,7 @@
 
 <header class="site-header">
   <div style="justify-self: start;">
-    <a href="/championship/">
+    <a href="../">
       <button class="btn-ghost">← Back to Championship</button>
     </a>
   </div>
@@ -62,10 +65,10 @@
 
   <nav class="nav-menu">
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about/">About Us</a></li>
-      <li><a href="/events/">Events</a></li>
-      <li><a href="/championship/">Championship</a></li>
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../about/">About Us</a></li>
+      <li><a href="../../events/">Events</a></li>
+      <li><a href="../../championship/">Championship</a></li>
     </ul>
   </nav>
 </header>
@@ -75,13 +78,13 @@
   <h1 class="page-heading">Race 2 Results</h1>
 
   <p class="page-intro">
-    Official race-by-race breakdown for Race 2. Tap a driver to expand their performance notes.
+    Official race-by-race breakdown for Race 2.  
+    Tap a driver to view performance notes.
   </p>
 
-<!-- RACE RESULTS PANEL (separate from championship panel) -->
 <div class="race-standings-panel">
   <h2 class="page-subheading">Race 2 — Standings</h2>
-    
+
 <table class="race-results">
   <tr>
     <th class="pos-col">Pos</th>
@@ -231,14 +234,14 @@
   </tr>
 
 </table>
-  </div>
+</div>
 
 </main>
 
 <script src="../../js/main.js"></script>
 
 <script>
-  /* Expandable driver stats */
+  // Expandable driver notes
   document.querySelectorAll('.driver-row').forEach(row => {
     row.addEventListener('click', () => {
       const id = row.dataset.driver;
@@ -247,7 +250,6 @@
     });
   });
 
-  /* Transition */
   window.addEventListener('load', () => {
     document.body.classList.add('page-visible');
   });
